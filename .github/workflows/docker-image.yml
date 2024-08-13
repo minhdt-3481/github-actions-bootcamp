@@ -23,9 +23,9 @@ jobs:
           registry: ${{ secrets.REGISTRY_SERVER }}
           username: ${{ github.repository_owner }}   # Pre-defined variable by GitHub Actions
           password: ${{ secrets.GITHUB_TOKEN }}      # Pre-defined
-      -
-        name: Build and push
-        uses: docker/build-push-action@v6
+      
+      - name: Build and push
+        uses: docker/build-push-action@v5
         with:
           push: ${{ github.event_name == 'push' }}   # Only push Docker images to the registry server on the push event 
           tags: |-
