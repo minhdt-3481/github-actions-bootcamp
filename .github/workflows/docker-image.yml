@@ -31,7 +31,9 @@ jobs:
       
       - name: Build and push
         uses: docker/build-push-action@v5
+        env: 
+          GITHUB_RUN_NUMBER: ${{ vars.GITHUB_RUN_NUMBER }}
         with:
           push: ${{ github.event_name == 'push' }}   # Only push Docker images to the registry server on the push event 
-          tags: ${{ secrets.REGISTRY_SERVER }}/${{ github.repository }}:build-${{ vars.GITHUB_RUN_NUMBER }}
+          tags: ${{ secrets.REGISTRY_SERVER }}/${{ github.repository }}:build-$GITHUB_RUN_NUMBER
             
