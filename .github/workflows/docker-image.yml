@@ -25,7 +25,9 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}      # Pre-defined
 
       - name: Echo Hello
-        run: echo ${{ vars.GITHUB_RUN_NUMBER }}
+        env: 
+          GITHUB_RUN_NUMBER: ${{ vars.GITHUB_RUN_NUMBER }}
+        run: echo $GITHUB_RUN_NUMBER
       
       - name: Build and push
         uses: docker/build-push-action@v5
