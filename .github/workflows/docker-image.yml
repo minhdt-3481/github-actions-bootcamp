@@ -23,6 +23,9 @@ jobs:
           registry: ${{ secrets.REGISTRY_SERVER }}
           username: ${{ github.repository_owner }}   # Pre-defined variable by GitHub Actions
           password: ${{ secrets.GITHUB_TOKEN }}      # Pre-defined
+
+      - name: Echo
+        run: echo "Hello ${{ vars.GITHUB_RUN_NUMBER }}"
       
       - name: Build and push
         uses: docker/build-push-action@v5
