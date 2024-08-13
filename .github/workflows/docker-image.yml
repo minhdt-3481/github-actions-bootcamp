@@ -35,5 +35,5 @@ jobs:
           GITHUB_RUN_NUMBER: ${{ vars.GITHUB_RUN_NUMBER }}
         with:
           push: ${{ github.event_name == 'push' }}   # Only push Docker images to the registry server on the push event 
-          tags: ${{ secrets.REGISTRY_SERVER }}/${{ github.repository }}:build--${{ vars.GITHUB_RUN_NUMBER }}
+          tags: ${{ secrets.REGISTRY_SERVER }}/${{ github.repository }}:build--${{ github.run_number }}
             
