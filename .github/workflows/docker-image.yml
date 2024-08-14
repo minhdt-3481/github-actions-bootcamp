@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "develop" ]
 
 jobs:
   docker:
@@ -29,17 +29,3 @@ jobs:
           GITHUB_RUN_NUMBER: ${{ vars.GITHUB_RUN_NUMBER }}
         run: echo $GITHUB_RUN_NUMBER
       
-      # - name: Build and push
-      #   uses: docker/build-push-action@v5
-      #   env: 
-      #     GITHUB_RUN_NUMBER: ${{ vars.GITHUB_RUN_NUMBER }}
-      #   with:
-      #     push: ${{ github.event_name == 'push' }}   # Only push Docker images to the registry server on the push event 
-      #     tags: ${{ secrets.REGISTRY_SERVER }}/${{ github.repository }}:build--${{ github.run_number }}
-            
-      - name: Build and push Docker image for multiple architectures
-        run: |
-          docker buildx create --use
-          docker buildx build --platform linux/ \
-            --push \
-            -t ${{ secrets.REGISTRY_SERVER }}/${{ github.repository }}:build--${{ github.run_number }} .
