@@ -9,6 +9,7 @@ def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bootcamp.settings')
     try:
         print("Hello world")
+        print("Halo")
         from django.core.management import execute_from_command_line
     except ImportError as exc:
         raise ImportError(
